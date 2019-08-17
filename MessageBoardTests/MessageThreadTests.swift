@@ -15,12 +15,20 @@ class MessageThreadTests: XCTestCase {
         return MessageThreadController()
     }
     
-    //checkifcreateThread and putting is working
-    func testIfURLsessionWorks() {
+    //checkcreateThread
+    func testCreateThread() {
         self.messageThreadController.createMessageThread(with: "random") {}
         XCTAssertNotNil(self.messageThreadController.messageThreads)  //it fails if you use XCTAssertNil so createMessageThread works
     }
-
+    
+    /* this works with wrong title as well why??
+    func testSecondVersion() {
+        self.messageThreadController.createMessageThread(with: "random") {
+            XCTAssertEqual(self.messageThreadController.messageThreads.last?.title, "random")
+        }
+    }
+    */
+    
     //checkifcreatemessageworks
     func testCreateMessage() {
         
