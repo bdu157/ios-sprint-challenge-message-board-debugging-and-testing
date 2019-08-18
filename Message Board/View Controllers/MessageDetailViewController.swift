@@ -11,7 +11,6 @@ import UIKit
 class MessageDetailViewController: UIViewController {
 
     // MARK: - Actions
-    
     @IBAction func sendMessage(_ sender: Any) {
         
         guard let senderName = senderNameTextField.text,
@@ -31,4 +30,5 @@ class MessageDetailViewController: UIViewController {
 
     @IBOutlet weak var senderNameTextField: UITextField!
     @IBOutlet weak var messageTextView: UITextView!
+
 }

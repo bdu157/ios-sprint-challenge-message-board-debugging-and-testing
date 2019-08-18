@@ -9,7 +9,12 @@
 import XCTest
 
 class Message_BoardUITests: XCTestCase {
-        
+    
+    
+    var app: XCUIApplication {
+        return XCUIApplication()
+    }
+    
     override func setUp() {
         super.setUp()
 
@@ -24,10 +29,6 @@ class Message_BoardUITests: XCTestCase {
     }
     
     //helper
-    var app: XCUIApplication {
-        return XCUIApplication()
-    }
-
     private var input: String {
         return "first"
     }
@@ -46,10 +47,6 @@ class Message_BoardUITests: XCTestCase {
     
     private var contentLabel: XCUIElement {
         return app.staticTexts["MessageThreadDetailTableViewController.ContentLabel"]
-    }
-    
-    private var contentTextView: XCUIElement {
-        return app.textViews["MessageDetailViewController.TextView"]
     }
     
     
@@ -118,7 +115,8 @@ class Message_BoardUITests: XCTestCase {
         XCTAssert(app.navigationBars[input].exists)
     }
     
-    func testCreateMessage() {
+    func testCreateMessages() {
+        
         let textField = app.textFields["Create a new thread:"]
         textField.tap()
         textField.typeText(input)
@@ -136,14 +134,19 @@ class Message_BoardUITests: XCTestCase {
         let messageTextField = app.textFields["Enter your name:"]
         messageTextField.tap()
         messageTextField.typeText("dongwoo")
-//        let textView = app.textViews["MessageDetailViewController.TextView"]
-//        textView.tap()
-//        contentTextView.typeText("anything")
-        sendButton.tap()
         
-        //XCTAssertEqual(senderLabel.label, "dongwoo")
-        //XCTAssert(contentLabel.staticTexts["anything"].exists)
-        //XCTAssert(title.exists)
+//        let myTextView = app.textViews["myTextView"]
+//        myTextView.tap()
+//        myTextView.typeText("anything")
+        
+        let textView = app.otherElements.containing(.navigationBar, identifier:"New Message").children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .textView).element
+        textView.tap()
+        textView.typeText("anything")
+        
+        sendButton.tap()
+        XCTAssertEqual(senderLabel.label, "dongwoo")
+        XCTAssertEqual(contentLabel.label, "anything")
+        XCTAssert(app.navigationBars[input].exists)
     }
     
 }
