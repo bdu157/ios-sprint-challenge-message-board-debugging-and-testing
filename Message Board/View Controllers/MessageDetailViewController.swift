@@ -11,7 +11,6 @@ import UIKit
 class MessageDetailViewController: UIViewController {
 
     // MARK: - Actions
-    
     @IBAction func sendMessage(_ sender: Any) {
         
         guard let senderName = senderNameTextField.text,
@@ -21,6 +20,7 @@ class MessageDetailViewController: UIViewController {
         messageThreadController?.createMessage(in: messageThread, withText: messageText, sender: senderName, completion: {
             print("Message created!")
         })
+        self.navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Properties
@@ -30,4 +30,5 @@ class MessageDetailViewController: UIViewController {
 
     @IBOutlet weak var senderNameTextField: UITextField!
     @IBOutlet weak var messageTextView: UITextView!
+
 }
